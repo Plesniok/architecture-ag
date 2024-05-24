@@ -21,14 +21,14 @@ public class Category {
     private int id;
 
     @Column(unique = true)
-    @NotNull(message = "MESSAGEID")
+    @NotNull(message = "6")
     private String name;
 
-    public @NotNull(message = "MESSAGEID") String getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(@NotNull(message = "MESSAGEID") String name) {
+    public void setName( String name) {
         this.name = name;
     }
 

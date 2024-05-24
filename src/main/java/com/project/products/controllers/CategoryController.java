@@ -1,6 +1,7 @@
 package com.project.products.controllers;
 
 import com.project.products.database.CategoryRepository;
+import com.project.products.exceptions.ConflictException;
 import com.project.products.models.Category;
 import com.project.products.models.Constant;
 import com.project.products.models.api.ApiResponse;
@@ -22,10 +23,6 @@ public class CategoryController {
     public ResponseEntity<ApiResponse<Category>> addPriceToProduct(@RequestBody @Valid Category newCategory) {
 
         List<Category> categoriesWithName = categoryRepository.findAllByName(newCategory.getName());
-
-//        if (categoriesWithName){
-//
-//        }
 
         Category savedCategory = categoryRepository.save(newCategory);
 

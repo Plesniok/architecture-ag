@@ -24,7 +24,7 @@ public class Price {
 //    @Min(1)
     private int productId;
 
-    @NotNull(message = "ERRORID")
+    @NotNull(message = "9")
     private double value;
 
     private Date validFrom;

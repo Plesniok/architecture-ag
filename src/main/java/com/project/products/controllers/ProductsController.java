@@ -52,7 +52,7 @@ public class ProductsController {
     @GetMapping("/product/{productId}")
     public ResponseEntity<ApiResponse<Product>> getProduct(@PathVariable Long productId) {
 
-        Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new HttpMessageNotReadableException("3"));
+        Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new NotFoundException("3"));
 
 
         return Responses.ok(foundProduct, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
@@ -61,7 +61,7 @@ public class ProductsController {
     @GetMapping("/product/{productId}/label")
     public ResponseEntity<ApiResponse<ProductLabel>> getProductLabel(@PathVariable Long productId) {
 
-        Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new HttpMessageNotReadableException("3"));
+        Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new NotFoundException("3"));
 
         ProductLabel productLabel = foundProduct.castToProductLabel();
 

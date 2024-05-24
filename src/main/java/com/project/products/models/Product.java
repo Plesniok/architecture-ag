@@ -14,11 +14,11 @@ public class Product {
     @Column(unique = true)
     private String upc;
 
-    @NotNull(message = "ERRORID")
+    @NotNull(message = "7")
     @Column(unique = true)
     private String name;
 
-    @NotNull(message = "MESSAGEID")
+    @NotNull(message = "8")
     private int categoryId;
 
     public long getId() {
@@ -37,16 +37,15 @@ public class Product {
         return name;
     }
 
-    public void setName(@NotNull(message = "ERRORID") String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    @NotNull(message = "MESSAGEID")
     public int getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(@NotNull(message = "MESSAGEID") int categoryId) {
+    public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
 

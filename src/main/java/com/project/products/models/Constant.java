@@ -25,7 +25,12 @@ public class Constant {
                 Map.entry(PRODUCTS_CODE_PREFIX + "2", "Success"),
                 Map.entry(PRODUCTS_CODE_PREFIX + "3", "Product not found"),
                 Map.entry(PRODUCTS_CODE_PREFIX + "4", "Category not found"),
-                Map.entry(PRODUCTS_CODE_PREFIX + "5", "Unique values conflict")
+                Map.entry(PRODUCTS_CODE_PREFIX + "5", "Unique values conflict"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "6", "Invalid category name"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "7", "Invalid product name"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "8", "Invalid category name"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "9", "Invalid product value"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "10", "category with given name already exists")
 
         ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
