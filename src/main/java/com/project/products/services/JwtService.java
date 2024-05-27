@@ -17,7 +17,7 @@ import io.jsonwebtoken.security.SignatureException;
 
 public class JwtService {
 
-    static public String generateNewToken(String email, String role, long id, List<Integer> permissionsIds){
+    static public String generateNewToken(String email, String role, long id){
         SecretKey key = Jwts.SIG.HS256.key().build();
 
 
@@ -31,7 +31,28 @@ public class JwtService {
                 .claim("email", email)
                 .claim("role", role)
                 .claim("id", id)
-                .claim("permission", permissionsIds)
+                .setExpiration(expirationDate)
+                .signWith(
+                        SignatureAlgorithm.HS512, base64Key
+                )
+                .compact();
+    }
+
+
+    static public String generateNewRefreshToken(String email, String role, long id){
+        SecretKey key = Jwts.SIG.HS256.key().build();
+
+
+        String base64Key = "T5le/sNF/ltzky0S6xrbdCzyy9IBoPn9EaCZiEo2u0RKNEapxjJBrJT25F6Z6UliLfUJ7AtX8MZAA7VEA+ONlA==";
+
+        Date currentTime = new Date();
+
+        Date expirationDate = new Date(currentTime.getTime() + (45 * 60 * 1000));
+
+        return Jwts.builder()
+                .claim("email", email)
+                .claim("role", role)
+                .claim("id", id)
                 .setExpiration(expirationDate)
                 .signWith(
                         SignatureAlgorithm.HS512, base64Key

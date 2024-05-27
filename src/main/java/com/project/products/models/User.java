@@ -19,8 +19,6 @@ public class User {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int id;
 
-//    @NotNull()
-//    @Min(1)
     @NotNull()
     @Column(unique = true)
     private String email;
@@ -37,9 +35,6 @@ public class User {
     @NotNull()
     @Column(updatable = false)
     private String role;
-
-    @ElementCollection
-    private List<Integer> permissionsIds;
 
     public int getId() {
         return id;
@@ -83,13 +78,5 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public List<Integer> getPermissionsIds() {
-        return permissionsIds;
-    }
-
-    public void setPermissionsIds(List<Integer> permissionsIds) {
-        this.permissionsIds = permissionsIds;
     }
 }
