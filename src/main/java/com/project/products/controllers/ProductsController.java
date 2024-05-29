@@ -58,6 +58,15 @@ public class ProductsController {
         return Responses.ok(foundProduct, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
+    @GetMapping("products")
+    public ResponseEntity<ApiResponse<List<Product>>> getAllProducts() {
+
+        List<Product> allProducts = productsRepository.findAll();
+
+
+        return Responses.ok(allProducts, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+    }
+
     @GetMapping("product/{productId}/label")
     public ResponseEntity<ApiResponse<ProductLabel>> getProductLabel(@PathVariable Long productId) {
 

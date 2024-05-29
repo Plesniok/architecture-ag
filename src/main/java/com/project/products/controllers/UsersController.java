@@ -7,6 +7,7 @@ import com.project.products.models.User;
 import com.project.products.models.api.ApiResponse;
 import com.project.products.models.api.Responses;
 import com.project.products.models.requests.LoginRequest;
+import com.project.products.models.responses.LoginResponse;
 import com.project.products.models.validationGroups.UserUpdate;
 import com.project.products.services.JwtService;
 import io.jsonwebtoken.Claims;
@@ -32,8 +33,18 @@ public class UsersController {
         return Responses.ok(newUserData, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
+    @GetMapping("user/role")
+    public ResponseEntity<ApiResponse<String>> getUserRole(
+            @RequestHeader("X-access-token") String jwt
+    ) {
+
+        Claims decodedToken = JwtService.decodeTokenToPayload(jwt);
+
+        return Responses.ok((String) decodedToken.get("role"), Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+    }
+
     @PutMapping("login")
-    public ResponseEntity<ApiResponse<User>> addUser(@RequestBody @Valid LoginRequest loginRequest) {
+    public ResponseEntity<ApiResponse<LoginResponse>> addUser(@RequestBody @Valid LoginRequest loginRequest) {
 
         User foundUserData = usersRepository.findByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword())
                 .orElseThrow(() -> new NotFoundException("3"));
@@ -44,19 +55,11 @@ public class UsersController {
                 foundUserData.getId()
         );
 
-        foundUserData.setToken(newToken);
+        LoginResponse loginResponse = new LoginResponse();
 
-        String newRefreshToken = JwtService.generateNewToken(
-                foundUserData.getEmail(),
-                foundUserData.getRole(),
-                foundUserData.getId()
-        );
+        loginResponse.setToken(newToken);
 
-        foundUserData.setRefreshToken(newRefreshToken);
-
-        usersRepository.save(foundUserData);
-
-        return Responses.ok(foundUserData, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(loginResponse, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
     @PutMapping("/user/{userId}")

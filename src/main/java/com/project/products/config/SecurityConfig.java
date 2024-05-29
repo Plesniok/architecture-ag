@@ -21,6 +21,7 @@ public class SecurityConfig{
                 auth -> auth
                         .requestMatchers("/user").permitAll()
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/user/role").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/user/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/product/**").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/product/**").hasAnyAuthority("ADMIN", "USER")
