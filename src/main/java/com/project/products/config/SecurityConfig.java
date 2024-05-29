@@ -1,16 +1,11 @@
 package com.project.products.config;
 
 import com.project.products.services.JwtFilter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -26,7 +21,14 @@ public class SecurityConfig{
                 auth -> auth
                         .requestMatchers("/user").permitAll()
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/product").hasAnyAuthority("USER")
+                        .requestMatchers(HttpMethod.PUT, "/user/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/product/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/product/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/products/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/price/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/prices/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/category/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/categories/**").hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().permitAll()
         );
 

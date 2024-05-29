@@ -34,7 +34,7 @@ public class ProductsController {
     private final PricesRepository pricesRepository;
     private final CategoryRepository categoryRepository;
 
-    @PostMapping("/product")
+    @PostMapping("product")
     public ResponseEntity<ApiResponse<Product>> addProduct(@RequestBody @Valid Product newProductData) {
 
         categoryRepository.findById((long) newProductData.getCategoryId()).orElseThrow(() -> new NotFoundException("4"));
@@ -49,7 +49,7 @@ public class ProductsController {
         return Responses.ok(newProductData, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
-    @GetMapping("/product/{productId}")
+    @GetMapping("product/{productId}")
     public ResponseEntity<ApiResponse<Product>> getProduct(@PathVariable Long productId) {
 
         Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new NotFoundException("3"));
@@ -58,7 +58,7 @@ public class ProductsController {
         return Responses.ok(foundProduct, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
-    @GetMapping("/product/{productId}/label")
+    @GetMapping("product/{productId}/label")
     public ResponseEntity<ApiResponse<ProductLabel>> getProductLabel(@PathVariable Long productId) {
 
         Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new NotFoundException("3"));
