@@ -9,13 +9,6 @@ import java.util.Date;
 @Entity
 @Table(name = "categories")
 public class Category {
-    /**
-     * Entity error mapping rules.
-     *
-     * Value of invalid argument error should equal one of keys number part in Constant.getDetectionResponseHashMap.
-     * Constant class is located in com.project.products.models.Constant
-     */
-
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int id;
@@ -34,5 +27,9 @@ public class Category {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

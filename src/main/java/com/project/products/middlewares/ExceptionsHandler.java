@@ -1,14 +1,13 @@
 package com.project.products.middlewares;
 
 import com.project.products.exceptions.NotFoundException;
-import com.project.products.models.Constant;
+import com.project.products.models.api.Constant;
 import com.project.products.models.api.ApiResponse;
 import com.project.products.models.api.Responses;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.Null;
 import org.h2.jdbc.JdbcSQLIntegrityConstraintViolationException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -21,13 +20,13 @@ public class ExceptionsHandler {
 
     @ExceptionHandler({NotFoundException.class})
     public ResponseEntity<ApiResponse<Object>> notFoundError(NotFoundException ex) {
-        return Responses.notFound(null, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat(ex.getMessage()));
+        return Responses.notFound(null, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat(ex.getMessage()));
 
     }
 
     @ExceptionHandler({JdbcSQLIntegrityConstraintViolationException.class})
     public ResponseEntity<ApiResponse<Object>> notFoundError(JdbcSQLIntegrityConstraintViolationException ex) {
-        return Responses.conflict(null, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("5"));
+        return Responses.conflict(null, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("5"));
 
     }
 
@@ -43,7 +42,7 @@ public class ExceptionsHandler {
                 .toString()
                 .replaceAll("\\[*]*", "");
 
-        return Responses.badRequest(null, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat(invalidParametersErrorMessage));
+        return Responses.badRequest(null, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat(invalidParametersErrorMessage));
 
     }
 

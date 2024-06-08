@@ -1,6 +1,5 @@
 package com.project.products.models;
 
-import com.project.products.models.validationGroups.UserUpdate;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -15,7 +14,7 @@ public class User {
      * Entity error mapping rules.
      *
      * Value of invalid argument error should equal one of keys number part in Constant.getDetectionResponseHashMap.
-     * Constant class is located in com.project.products.models.Constant
+     * Constant class is located in com.project.products.models.api.Constant
      */
 
     @Id
@@ -28,12 +27,6 @@ public class User {
 
     @NotNull()
     private String password;
-
-    @Column(insertable = false)
-    private String token;
-
-    @Column(insertable = false)
-    private String refreshToken;
 
     @NotNull()
     @Column(updatable = false)
@@ -61,22 +54,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
     }
 
     public String getRole() {

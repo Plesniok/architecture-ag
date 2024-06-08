@@ -1,6 +1,5 @@
 package com.project.products.models.api;
 
-import com.project.products.models.Constant;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.project.products.models;
+package com.project.products.models.api;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,10 +19,11 @@ public class Constant {
     public static final String PRODUCTS_CODE_PREFIX
  = "PRODUCTS-";
 
-    final public static Map<String, String> getDetectionResponsesHashMap() {
+    final public static Map<String, String> getProductsResponsesHashMap() {
         return Stream.of(
                 Map.entry(PRODUCTS_CODE_PREFIX + "1", "Internal server error"),
-                Map.entry(PRODUCTS_CODE_PREFIX + "2", "Success")
+                Map.entry(PRODUCTS_CODE_PREFIX + "2", "Success"),
+                Map.entry(PRODUCTS_CODE_PREFIX + "3", "Category does not exist")
 
         ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }

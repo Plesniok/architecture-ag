@@ -1,4 +1,7 @@
-package com.project.products.models;
+package com.project.products.models.api.responses;
+
+import com.project.products.models.Category;
+import com.project.products.models.Price;
 
 import java.util.Date;
 
@@ -13,8 +16,6 @@ public class ProductLabel {
     private Category category;
 
     private Price price;
-
-    private Date priceValidFrom;
 
     public ProductLabel (int id, String upc, String name){
         this.id = id;

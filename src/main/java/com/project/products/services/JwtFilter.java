@@ -28,9 +28,6 @@ import java.util.Optional;
 @Service
 public class JwtFilter extends OncePerRequestFilter {
 
-    @Autowired
-    private UsersRepository usersRepository;
-
     @Override
     protected void doFilterInternal(
             jakarta.servlet.http.HttpServletRequest request,

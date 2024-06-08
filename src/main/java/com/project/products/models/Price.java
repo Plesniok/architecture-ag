@@ -13,15 +13,14 @@ public class Price {
      * Entity error mapping rules.
      *
      * Value of invalid argument error should equal one of keys number part in Constant.getDetectionResponseHashMap.
-     * Constant class is located in com.project.products.models.Constant
+     * Constant class is located in com.project.products.models.api.Constant
      */
 
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int id;
 
-    @NotNull()
-//    @Min(1)
+    @NotNull(message = "11")
     private int productId;
 
     @NotNull(message = "9")

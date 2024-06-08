@@ -6,7 +6,9 @@ import com.project.products.database.ProductsRepository;
 import com.project.products.exceptions.NotFoundException;
 import com.project.products.models.*;
 import com.project.products.models.api.ApiResponse;
+import com.project.products.models.api.Constant;
 import com.project.products.models.api.Responses;
+import com.project.products.models.api.responses.ProductLabel;
 import com.project.products.services.UpcService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class ProductsController {
         productsRepository.save(newProductData);
 
 
-        return Responses.ok(newProductData, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(newProductData, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
     @GetMapping("product/{productId}")
@@ -55,7 +57,7 @@ public class ProductsController {
         Product foundProduct = productsRepository.findById(productId).orElseThrow(() -> new NotFoundException("3"));
 
 
-        return Responses.ok(foundProduct, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(foundProduct, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
     @GetMapping("products")
@@ -64,7 +66,7 @@ public class ProductsController {
         List<Product> allProducts = productsRepository.findAll();
 
 
-        return Responses.ok(allProducts, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(allProducts, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
     @GetMapping("product/{productId}/label")
@@ -81,10 +83,10 @@ public class ProductsController {
 
         }
 
-        Category foundCategory = categoryRepository.findById(Long.valueOf(foundProduct.getCategoryId())).orElseThrow(() -> new HttpMessageNotReadableException("3"));
+        Category foundCategory = categoryRepository.findById(Long.valueOf(foundProduct.getCategoryId())).orElseThrow(() -> new NotFoundException("3"));
 
         productLabel.setCategory(foundCategory);
 
-        return Responses.ok(productLabel, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(productLabel, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 }

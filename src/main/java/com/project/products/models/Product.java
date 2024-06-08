@@ -1,5 +1,6 @@
 package com.project.products.models;
 
+import com.project.products.models.api.responses.ProductLabel;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

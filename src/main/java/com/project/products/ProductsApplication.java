@@ -12,7 +12,6 @@ public class ProductsApplication {
         SpringApplication.run(ProductsApplication.class, args);
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.scan("com.project.products.services");
-        context.scan("com.project.products.middlewares.validation");
         context.refresh();
     }
 

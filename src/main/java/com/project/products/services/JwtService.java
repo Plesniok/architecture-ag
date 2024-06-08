@@ -1,6 +1,5 @@
 package com.project.products.services;
 
-import com.project.products.models.Permission;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,7 +7,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import javax.crypto.SecretKey;
 
 import java.util.Date;
-import java.util.List;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;

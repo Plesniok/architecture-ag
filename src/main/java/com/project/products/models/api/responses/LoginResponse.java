@@ -1,4 +1,4 @@
-package com.project.products.models.responses;
+package com.project.products.models.api.responses;
 
 public class LoginResponse {
     private String token;

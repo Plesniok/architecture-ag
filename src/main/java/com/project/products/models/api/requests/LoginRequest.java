@@ -1,4 +1,4 @@
-package com.project.products.models.requests;
+package com.project.products.models.api.requests;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;

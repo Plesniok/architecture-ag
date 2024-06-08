@@ -3,17 +3,14 @@ package com.project.products.controllers;
 import com.project.products.database.PricesRepository;
 import com.project.products.database.ProductsRepository;
 import com.project.products.exceptions.NotFoundException;
-import com.project.products.models.Constant;
+import com.project.products.models.api.Constant;
 import com.project.products.models.Price;
-import com.project.products.models.Product;
 import com.project.products.models.api.ApiResponse;
 import com.project.products.models.api.Responses;
 import com.project.products.services.DateService;
 import jakarta.validation.Valid;
-import jakarta.ws.rs.QueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -42,7 +39,7 @@ public class PricesController {
 
         dateService.setLastPriceValidOnNow(newPrice);
 
-        return Responses.ok(newPrice, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(newPrice, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
     @GetMapping("prices/{productId}")
@@ -52,7 +49,7 @@ public class PricesController {
 
         List<Price> prices = pricesRepository.findByProductIdAndValidFromAfter(productId, validFrom);
 
-        return Responses.ok(prices, Constant.getDetectionResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
+        return Responses.ok(prices, Constant.getProductsResponsesHashMap(), Constant.PRODUCTS_CODE_PREFIX.concat("2"));
     }
 
 }
